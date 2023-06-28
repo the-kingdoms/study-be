@@ -1,0 +1,18 @@
+package com.example.demo.controller;
+
+import java.util.Map;
+
+import olomg.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+public class firstController {
+	
+	private final firstService firstService;
+	
+	@GetMapping("/first")
+	  public Map<String, Object> firstController() {
+	    return null;
+	  }
+}
