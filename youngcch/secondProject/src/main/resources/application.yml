@@ -1,0 +1,18 @@
+#MySQL 설정
+
+server:
+ address: localhost
+ port: 8080
+spring:
+  datasource:
+    dbcp2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mariadb://localhost:3306/b
+      username: root
+      password: cyc
+  
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  config-location: classpath:/mybatis/mybatis-config.xml
+        

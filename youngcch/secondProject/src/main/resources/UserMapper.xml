@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.UserMapper">
+ <select id="selectAllUsers" resultType="dto">
+	select *
+	from tbl_board
+	order by id
+  </select>
+  
+  <select id="selectUser" parameterType="String" resultType="dto">
+  	select *
+	from tbl_board
+	where id=#{id}
+  </select>
+  
+  <insert id="insertUser" parameterType="dto">
+  	insert into tbl_board(id, name, sex, age) 
+  	values(tbl_seq.nextval, #{id}, #{name}, #{sex}, age)
+  </insert>
+  
+  <update id="updateUser" parameterType="dto">
+  	update tbl_board
+  	set name=#{name}, sex=#{sex}, age=#{age}
+  	where id=#{id}
+  </update>
+  
+  <delete id="deleteUser" parameterType="int">
+  	delete from tbl_board
+  	where id=#{id}
+  </delete>
+  
+  </mapper>
