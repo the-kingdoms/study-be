@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+</head>
+<body>
+<form action="/member/save" method="post">
+    이메일: <input type="text" name="memberEmail"> <br>
+    <button type="button" onclick="requestVerificationCode()">인증 코드 요청</button>
+    <p id="verificationStatus"></p> <!-- 추가: 인증 상태를 나타내는 요소 -->
+    인증 코드: <input type="text" name="verificationCode"> <br>
+
+    비밀번호: <input type="password" name="memberPassword"> <br>
+    이름: <input type="text" name="memberName"> <br>
+
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/> // 제발,,, 되라,,,
+    <input type="submit" value="회원가입">
+</form>
+
+<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+
+<script>
+    function requestVerificationCode() {
+        let email = document.getElementsByName("memberEmail")[0].value;
+
+        fetch('/email-verification?email=' + email)
+            .then((response) => {
+                if (response.ok) {
+                    document.getElementById("verificationStatus").innerText = "메일이 전송되었습니다.";
+                } else {
+                    document.getElementById("verificationStatus").innerText = "메일 전송에 실패했습니다.";
+                }
+            });
+    }
+</script>
+</body>
+</html>
